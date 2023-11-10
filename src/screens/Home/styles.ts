@@ -87,3 +87,7 @@ export const Count = styled.Text`
   text-align: center;
   color: #d9d9d9;
 `;
+
+export const StrikeThroughText = styled.Text`
+  text-decoration-line: line-through;
+`;

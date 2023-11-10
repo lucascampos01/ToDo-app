@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
+  max-width: 100%;
   flex-direction: row;
   background-color: #262626;
   margin: 20px;
@@ -20,7 +21,6 @@ export const TaskDescription = styled.Text`
   font-size: 14px;
   border-radius: 8px;
   width: 271px;
-  height: 54px;
 `;
 
 export const DeleteTask = styled.Image`
