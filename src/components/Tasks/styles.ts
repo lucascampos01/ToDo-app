@@ -21,6 +21,7 @@ export const TaskDescription = styled.Text`
   font-size: 14px;
   border-radius: 8px;
   width: 271px;
+  color: #fff;
 `;
 
 export const DeleteTask = styled.Image`

@@ -27,6 +27,7 @@ export const Form = styled.View`
 export const InputTask = styled.TextInput`
   flex: 1;
   background-color: #262626;
+  color: #fff;
   padding: 16px;
   font-size: 16px;
   border-radius: 8px;

@@ -25,6 +25,9 @@ export function Home() {
   const [tasks, setTasks] = useState<string[]>([]);
   const [taskDescription, setTaskDescription] = useState("");
 
+  const [tasksCreated, setTasksCreated] = useState(0);
+  const [tasksFinish, setTasksFinish] = useState(0);
+
   function handleTaskAdd() {
     if (tasks.includes(taskDescription)) {
       return Alert.alert(
@@ -41,6 +44,8 @@ export function Home() {
 
     setTasks((prevState) => [...prevState, taskDescription]);
     setTaskDescription("");
+
+    setTasksCreated((prevState) => prevState + 1);
   }
 
   function handleTaskRemove(description: string) {
@@ -54,10 +59,12 @@ export function Home() {
         },
         {
           text: "Confirmar",
-          onPress: () =>
+          onPress: () => {
             setTasks((prevState) =>
               prevState.filter((task) => task != description)
             ),
+              setTasksCreated((prevState) => prevState - 1);
+          },
         },
       ]
     );
@@ -84,12 +91,12 @@ export function Home() {
       <TasksInfo>
         <CreatedTasks>
           <CreatedTitle>Criadas</CreatedTitle>
-          <Count>0</Count>
+          <Count>{tasksCreated}</Count>
         </CreatedTasks>
 
         <FinishTasks>
           <FinishTitle>Concluídas</FinishTitle>
-          <Count>0</Count>
+          <Count>{tasksFinish}</Count>
         </FinishTasks>
       </TasksInfo>
 
