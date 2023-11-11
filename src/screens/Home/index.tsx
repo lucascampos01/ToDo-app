@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, FlatList } from "react-native";
+import { Alert, FlatList, Text, Image } from "react-native";
 import {
   Container,
   Header,
@@ -14,12 +14,14 @@ import {
   FinishTasks,
   FinishTitle,
   Count,
+  TextListEmpty,
 } from "./styles";
 
 import { Task } from "../../components/Tasks";
 
 const imageLogo = require("../../assets/logoTo.png");
 const plusIcon = require("../../assets/icons/plus.png");
+const listEmptyImage = require("../../assets/listEmpty.png");
 
 export function Home() {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -27,6 +29,8 @@ export function Home() {
 
   const [tasksCreated, setTasksCreated] = useState(0);
   const [tasksFinish, setTasksFinish] = useState(0);
+
+  const [taskCheck, setTaskCheck] = useState(false);
 
   function handleTaskAdd() {
     if (tasks.includes(taskDescription)) {
@@ -70,6 +74,10 @@ export function Home() {
     );
   }
 
+  function handleTaskCheck() {
+    setTaskCheck(!taskCheck);
+  }
+
   return (
     <Container>
       <Header>
@@ -82,6 +90,7 @@ export function Home() {
           placeholderTextColor="#808080"
           onChangeText={setTaskDescription}
           value={taskDescription}
+          onSubmitEditing={handleTaskAdd}
         />
         <ButtonAddTask onPress={handleTaskAdd}>
           <AddIcon source={plusIcon} />
@@ -108,13 +117,15 @@ export function Home() {
             key={item}
             description={item}
             onRemove={() => handleTaskRemove(item)}
+            onCheck={() => handleTaskCheck()}
+            check={taskCheck}
           />
         )}
-        /* ListEmptyComponent={() => (
-          <Text style={styles.listEmptyText}>
-            Nenhum participante foi adicionado para este evento ainda.
-          </Text>
-        )} */
+        ListEmptyComponent={() => (
+          <TextListEmpty>
+            Nenhuma tarefa adicionada até o momento.
+          </TextListEmpty>
+        )}
       />
     </Container>
   );
